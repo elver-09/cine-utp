@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<link rel="stylesheet" href="styles/estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Registro</title>
+</head>
+<body>
+    <header>
+        <h1>Mi página de cine</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+			<a href="Servicios.html">Servicios</a>
+			<a href="Contacto.html">Contacto</a>
+            <a href="Tabla.html">Tabla</a>
+        </nav>
+    </header>
+    <br>
+    <form>
+        <fieldset>
+            <legend>Datos Personales</legend>
+            <label>Nombre:</label>
+            <input type="text" name="nombre" placeholder="Ingrese su Nombre" required minlength="4">
+            <br><br>
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Ingrese su Email" required maxlength="20">
+            <br><br>
+            <label>Sexo:</label>
+            <input type="radio" name="sexo" value="masculino" required placeholder="Masculino">
+            <label>Masculino</label>
+            <input type="radio" name="sexo" value="femenino" required placeholder="Femenino">
+            <label>Femenino</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Preferencias</legend>
+            <label>Seleccione su Película Favorita:</label>
+                <select name="pelicula">
+                    <option value="pelicula1">Harry Potter</option>
+                    <option value="pelicula2">Rapidos y Furiosos</option>
+                    <option value="pelicula3">Spider-Man</option>
+                    <option value="pelicula4">El Señor de los Anillos</option>
+                    <option value="pelicula5">El Padrino</option>
+                </select>
+            <br><br>
+                <label>Opinión:</label>
+                <br>
+                <textarea name="opinion" rows="5" cols="40" placeholder="Ingrese su opinión sobre la película"></textarea>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Multimedia</legend>
+            <img src="images/1.jpg" alt="Imagen de ejemplo" width="200" height="150">
+            <br><br>
+            <audio controls>
+                <source src="audio/2.mp3" type="audio/mpeg">
+            </audio>
+            <br><br>
+            <video controls width="320" height="240">
+                <source src="video/1.mp4" type="video/mp4">
+            </video>
+        </fieldset>
+    </form>
+</body>
+</html>
