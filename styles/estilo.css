@@ -168,6 +168,84 @@ header{
 	font-size: 20px;
 	margin: 10px 0;
 }
+.servicios-grid{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+}
+.servicio{
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+	min-height: 170px;
+	transition: transform 0.3s ease;
+}
+.servicio:hover{
+	transform: translateY(-10px);
+}
+.formulario-registro{
+	width: 90%;
+	max-width: 1000px;
+	margin: 40px auto;
+	display: grid;
+	gap: 20px;
+}
+.formulario-registro fieldset{
+	background-color: #fff;
+	border: none;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+	border-left: 5px solid #ebaf3e;
+}
+.formulario-registro legend{
+	background-color: #ebaf3e;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+.campo{
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 15px;
+}
+.campo label{
+	font-weight: bold;
+}
+.campo input, .campo select, .campo textarea{
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+.multimedia{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+.multimedia img, .multimedia video{
+	width: 100%;
+	max-width: 400px;
+	border-radius: 5px;
+}
+.multimedia audio{
+	width: 100%;
+}
+.opciones{
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.opciones label{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5px;
+}
 @media (max-width: 768px) {
 	.header-contenido {
 		flex-direction: column;
@@ -179,6 +257,19 @@ header{
 	}
 	.tarjetas {
 		grid-template-columns: 1fr;
+	}
+	.servicios-grid {
+		grid-template-columns: 1fr;
+	}
+	.formulario-registro {
+		width: 90%;
+	}
+	.multimedia {
+		grid-template-columns: 1fr;
+	}
+	.opciones {
+		flex-direction: column;
+		align-items: flex-start;
 	}
 }
 nav {
@@ -193,5 +284,4 @@ section {
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid #ebaf3e;
 }
