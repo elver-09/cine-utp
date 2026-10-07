@@ -138,6 +138,7 @@ header{
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	overflow: hidden;
+	border-left: 5px solid #ebaf3e;
 }
 .tarjeta:hover{
 	transform: translateY(-10px);
@@ -180,6 +181,7 @@ header{
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
 	min-height: 170px;
 	transition: transform 0.3s ease;
+	border-left: 5px solid #ebaf3e;
 }
 .servicio:hover{
 	transform: translateY(-10px);
