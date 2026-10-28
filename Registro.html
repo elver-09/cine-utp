@@ -26,16 +26,16 @@
             <div class="contenedor">
                 <h1>Registro de Cine UTP</h1>
                 <p>Completa tus Datos Para Registrarse</p>
-                <form class="formulario-registro">
+                <form class="formulario-registro" id="formularioRegistro" onsubmit="registrarUsuario(event)">
                     <fieldset>
                         <legend>Datos Personales</legend>
                         <div class="campo">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su Nombre" required minlength="4">
+                            <input id="nombre" type="text" name="nombre" placeholder="Ingrese su Nombre" required minlength="4" onchange="mostrarEscritura()">
                         </div>
                         <div class="campo">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Ingrese su Email" required maxlength="20">
+                            <input type="email" id="email" name="email" placeholder="Ingrese su Email" required maxlength="30" onchange="mostrarEscritura()">
                         </div>
                         <div class="campo">
                             <label>Sexo:</label>
@@ -53,7 +53,7 @@
                         <legend>Preferencias</legend>
                         <div class="campo">
                             <label for="pelicula">Seleccione su Película Favorita:</label>
-                            <select id="pelicula" name="pelicula">
+                            <select id="pelicula" name="pelicula" onchange="mostrarPelicula(this.value)">
                                 <option value="pelicula1">Harry Potter</option>
                                 <option value="pelicula2">Rapidos y Furiosos</option>
                                 <option value="pelicula3">Spider-Man</option>
@@ -78,9 +78,144 @@
                             </video>
                         </div>
                     </fieldset>
+                    <div class="campo">
+                        <button type="submit" class="boton boton-principal">Registrar</button>
+                    </div>
+                    <section id="resultado" class="resultado-registro" aria-live="polite">
+                        <h2>Resultado del Registro:</h2>
+                        <p><span class="etiqueta">Nombre: </span> 
+                            <span id="resNombre"> </span></p>
+                        <p><span class="etiqueta">Email: </span> 
+                            <span id="resEmail"> </span></p>
+                        <p><span class="etiqueta">Sexo: </span> 
+                            <span id="resSexo"> </span></p>
+                        <p><span class="etiqueta">Película Favorita: </span> 
+                            <span id="resPelicula"> </span></p>
+                        <p><span class="etiqueta">Opinión: </span> 
+                            <span id="resOpinion"> </span></p>
+                    </section>
+
+                    <section class="Evaluar-Edad">
+                        <h2>Evaluar Edad</h2>
+                        <label for="nombrePersona">Ingrese su nombre:</label>
+                        <input type="text" id="nombrePersona" placeholder="Ingrese su nombre">
+                        <label for="edadPersona">Ingrese su edad:</label>
+                        <input type="number" id="edadPersona" placeholder="Ingrese su edad" min="0" max="120">
+                        <button type="button" id="btnEvaluarEdad">Evaluar Edad</button>
+
+                        <h3 id="resultadoEdad"></h3>
+                    </section>
                 </form>
             </div>
         </section>
     </main>
+    <script>
+
+        function mostrarEscritura(){
+            const nombreActual= document.getElementById("nombre").value;
+            const email= document.getElementById("email").value;
+            console.log("Hola:" + nombreActual);
+            console.log("Tu correo es:" + email);
+        }
+
+        function mostrarPelicula(pelicula) {
+            alert ("Seleccionaste:" + pelicula);
+        }
+        function registrarUsuario(event) {
+            event.preventDefault();
+
+            const nombre=document.getElementById("nombre").value.trim();
+            const email=document.getElementById("email").value.trim();
+
+            const pelicula=document.getElementById("pelicula");
+            const peliculaTexto= pelicula.options[pelicula.selectedIndex].text;
+
+            const opinion=document.getElementById("opinion").value.trim();
+
+            const sexoSeleccionado=document.querySelector('input[name="sexo"]:checked');
+            const sexo= sexoSeleccionado?
+            sexoSeleccionado.value: "No Especificado";
+
+            if(nombre==="" || email===""){
+                alert("Por favor, complete todos los campos obligatorios.");
+                return;
+            }
+            const continuar = confirm("¿Confirmas tu registro + nombre + email?");
+            if(continuar){
+                document.getElementById("resNombre").textContent=nombre;
+                document.getElementById("resEmail").textContent=email;
+                document.getElementById("resSexo").textContent=sexo;
+                document.getElementById("resPelicula").textContent=peliculaTexto;
+                document.getElementById("resOpinion").textContent=opinion || "No ingresaste Opinión";
+                document.getElementById("resultado").style.display="block";
+
+            const mensaje= 
+                "Registro Exitoso!\n" +
+                "Hola:" + nombre +
+                ".Tu Correo es:" + email +
+                ".Tu sexoes:" + sexo +
+                ".Tu Pelicula Favorita es:" + peliculaTexto +
+                ".Tu opinion es:" + (opinion || "No ingresaste Opinion");
+
+                console.log(mensaje);
+                alert("Tu Registro se Realizo con Exito!");
+                document.querySelector(".formulario-registro").reset();
+            }
+            else{
+                alert("Registro Cancelado");
+                document.querySelector(".formulario-registro").reset();
+            }
+
+            const peliculas = ["Harry Potter", "Rapidos y Furiosos", "Spider-Man", "El Señor de los Anillos", "El Padrino"];
+            const comboPeliculas = document.getElementById("pelicula");
+            const listHTML = document.createElement("listaPeliculas");
+            const totalHTML = document.createElement("totalPeliculas");
+
+            function actualizarPeliculas() {
+                comboPeliculas.innerHTML = "";
+                for (let i = 0; i < peliculas.length; i++) {
+                    const option = document.createElement("option");
+                    option.value = peliculas[i];
+                    option.textContent = peliculas[i];
+                    comboPeliculas.appendChild(option);
+                }
+
+                listHTML.innerHTML = "";
+
+                for (let i = 0; i < peliculas.length; i++) {
+                    const elemento = document.createElement("li");
+                    elemento.textContent = peliculas[i];
+                    listHTML.appendChild(elemento);
+                }
+
+                totalHTML.textContent = peliculas.length;
+            }
+        }
+        document.getElementById("btnEvaluarEdad").addEventListener("click", function() {
+            const nombre = document.getElementById("nombrePersona").value.trim();
+            const edadTexto = document.getElementById("edadPersona").value;
+            const edad = parseInt(edadTexto);
+
+            const resultadoEdad = document.getElementById("resultadoEdad");
+
+            if (nombre === "" || isNaN(edad)) {
+                resultadoEdad.textContent = "Por favor, ingrese su Nombre";
+                return;
+            }
+
+            if (edadTexto === "" || !Number.isInteger(edad) || edad < 0 || edad > 120) {
+                resultadoEdad.textContent = "Por favor, ingrese una edad válida";
+                return;
+            }
+
+            if (edad >= 18) {
+                resultadoEdad.textContent = "Hola " + nombre + ", eres mayor de edad.";
+            } else {
+                resultadoEdad.textContent = "Hola " + nombre + ", eres menor de edad.";
+            }
+            document.getElementById("nombrePersona").value = "";
+            document.getElementById("edadPersona").value = "";
+        });
+    </script>
 </body>
 </html>
